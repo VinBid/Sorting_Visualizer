@@ -1,0 +1,23 @@
+* {
+    background-color: black;
+    color: white;
+}
+
+.arrayContainer {
+    display: flex; 
+    align-items: flex-end;
+    justify-content: center; /* Center items horizontally */
+    height : 680px;
+    padding-top: 3rem; 
+    padding-right: 3rem; 
+    padding-bottom: 1rem; 
+    padding-left: 3rem; 
+}
+
+.barArray {
+    flex-grow: 1; /* Let the bar elements grow to fill the available space */
+    flex-basis: 0; /* Reset the initial size to zero */
+    background-color: green;
+    margin: 0 1px;
+} 
+/* enniku SM vannum */
