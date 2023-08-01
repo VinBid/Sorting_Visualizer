@@ -13,6 +13,13 @@ export function getInsertionSortAnimations(array) {
   return animations; //Returns animations for use 
 }
 
+export function getQuickSortAnimations(array) {
+  const animations = []; // this stores animations that will be done on screen. Stored throughout sort
+  if (array.length <= 1) return array;
+  quickSort(array, 0, array.length - 1, animations); // calls merge sort function. 
+  return animations; //Returns animations for use 
+}
+
 /* We chose the in place Merge Sort Implementation. 
 This was so we had access to the array itself to animate effectively. 
 Also it is more space efficient than simply creating an array every time ourselves. 
@@ -86,6 +93,49 @@ const insertionSort = (array, animations) => {
     }
   }
 };
+
+
+const partition = (array, start, end, animations) => {
+  const pivot = array[end];
+  let i = start;
+  let j = end - 1;
+  while (i <= j) {
+    while (array[i] < pivot) { 
+      animations.push([i, end, -1, -1]);
+      animations.push([i, end, -1, -2]);
+      i++;
+    }
+    while (array[j] > pivot) {
+      animations.push([j, end, -1, -1]);
+      animations.push([j, end, -1, -2]);
+      j--;
+    }
+    if (i <= j) {
+      animations.push([i, j, -1, -1]);
+      animations.push([i, j, -1, -2]);
+      animations.push([i, j, array[i], array[j]]);
+      swap(array, i, j);
+      i++;
+      j--;
+    }
+  }
+
+  animations.push([i, end, -1, -1]);
+  animations.push([i, end, -1, -2]);
+  animations.push([i, end, array[i], array[end]]);
+
+  swap(array, i, end); // Corrected swapping here (pivot to its correct position)
+  return i;
+};
+
+const quickSort = (array, low, high, animations) => {
+  if (low < high) {
+    const p = partition(array, low, high, animations);
+    quickSort(array, low, p - 1, animations);
+    quickSort(array, p + 1, high, animations);
+  }
+};
+
 
 
 
