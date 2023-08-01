@@ -1,9 +1,9 @@
 import React from 'react';
 import './SortingVisualizing.css';
-import { getMergeSortAnimations } from './SortingAlgo';
+import { getMergeSortAnimations, getInsertionSortAnimations} from './SortingAlgo';
 
 const ANIMATION_MS_SPEED = 6;
-const NUM_ELEMENTS = 500;
+const NUM_ELEMENTS = 40;
 
 export default class SortingVisualizing extends React.Component {
   constructor(props) {
@@ -66,8 +66,37 @@ export default class SortingVisualizing extends React.Component {
   }
 
   insertionSort() {
-    console.log('Insertion Sort');
-  }
+    const animations = getInsertionSortAnimations(this.state.array);
+    const arrayBars = document.getElementsByClassName('barArray');
+    const barsArray = Array.from(arrayBars);
+  
+    for (let i = 0; i < animations.length; i++) {
+      const [curr, before, currValue, beforeValue] = animations[i];
+  
+      if (currValue === -1) {
+        if (beforeValue === -1) {
+          // Highlight the elements being compared (color 1)
+          setTimeout(() => {
+            barsArray[curr].style.backgroundColor = 'red';
+            barsArray[before].style.backgroundColor = 'red';
+          }, i * ANIMATION_MS_SPEED);
+        } else {
+          // Set the color back to green after highlighting (color 2)
+          setTimeout(() => {
+            barsArray[curr].style.backgroundColor = 'green';
+            barsArray[before].style.backgroundColor = 'green';
+          }, i * ANIMATION_MS_SPEED);
+        }
+      } else {
+        // Swap the elements and update their height
+        setTimeout(() => {
+          barsArray[curr].style.height = `${beforeValue}px`;
+          barsArray[before].style.height = `${currValue}px`;
+        }, i * ANIMATION_MS_SPEED);
+      }
+    }
+  };
+    
 
   render() {
     const { array } = this.state;
