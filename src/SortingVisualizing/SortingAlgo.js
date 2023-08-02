@@ -20,6 +20,12 @@ export function getQuickSortAnimations(array) {
   return animations; //Returns animations for use 
 }
 
+export function getBubbleSortAnimations(array) {
+  const animations = []; // this stores animations that will be done on screen. Stored throughout sort
+  if (array.length <= 1) return array;
+  bubbleSort(array, animations); // calls merge sort function. 
+  return animations; //Returns animations for use 
+}
 /* We chose the in place Merge Sort Implementation. 
 This was so we had access to the array itself to animate effectively. 
 Also it is more space efficient than simply creating an array every time ourselves. 
@@ -137,7 +143,19 @@ const quickSort = (array, low, high, animations) => {
 };
 
 
-
+const bubbleSort = (array, animations) => {
+  
+  for(let i = 1; i < array.length; i++) {
+    for(let j = 0; j < array.length - i; j++) {
+      animations.push([j, j + 1, -1, -1]);
+      animations.push([j, j + 1, -1, -2]);
+      if(array[j] > array[j + 1]) {
+        animations.push([j, j + 1, array[j], array[j + 1]]);
+        swap(array, j, j + 1);
+      }
+    }
+  }
+};
 
 
 

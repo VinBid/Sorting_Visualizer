@@ -1,9 +1,9 @@
 import React from 'react';
 import './SortingVisualizing.css';
-import { getMergeSortAnimations, getInsertionSortAnimations, getQuickSortAnimations} from './SortingAlgo';
+import { getMergeSortAnimations, getInsertionSortAnimations, getQuickSortAnimations, getBubbleSortAnimations} from './SortingAlgo';
 
-const ANIMATION_MS_SPEED = 0.3;
-const NUM_ELEMENTS = 500;
+const ANIMATION_MS_SPEED = 15;
+const NUM_ELEMENTS = 20;
 
 export default class SortingVisualizing extends React.Component {
   constructor(props) {
@@ -89,9 +89,37 @@ export default class SortingVisualizing extends React.Component {
     }
   }
 
-  heapSort() {
-    console.log('Heap Sort');
-  }
+  bubbleSort() {
+    const animations = getBubbleSortAnimations(this.state.array);
+    const arrayBars = document.getElementsByClassName('barArray');
+    const barsArray = Array.from(arrayBars);
+  
+    for (let i = 0; i < animations.length; i++) {
+      const [curr, before, currValue, beforeValue] = animations[i];
+  
+      if (currValue === -1) {
+        if (beforeValue === -1) {
+          // Highlight the elements being compared (color 1)
+          setTimeout(() => {
+            barsArray[curr].style.backgroundColor = 'red';
+            barsArray[before].style.backgroundColor = 'red';
+          }, i * ANIMATION_MS_SPEED);
+        } else {
+          // Set the color back to green after highlighting (color 2)
+          setTimeout(() => {
+            barsArray[curr].style.backgroundColor = 'green';
+            barsArray[before].style.backgroundColor = 'green';
+          }, i * ANIMATION_MS_SPEED);
+        }
+      } else {
+        // Swap the elements and update their height
+        setTimeout(() => {
+          barsArray[curr].style.height = `${beforeValue}px`;
+          barsArray[before].style.height = `${currValue}px`;
+        }, i * ANIMATION_MS_SPEED);
+      }
+    }
+  };
 
   insertionSort() {
     const animations = getInsertionSortAnimations(this.state.array);
@@ -138,7 +166,7 @@ export default class SortingVisualizing extends React.Component {
         <button onClick={() => this.resetArray(NUM_ELEMENTS)}>Generate Array</button>
         <button onClick={() => this.mergeSort()}>Merge Sort</button>
         <button onClick={() => this.quickSort()}>Quick Sort</button>
-        <button onClick={() => this.heapSort()}>Heap Sort</button>
+        <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
         <button onClick={() => this.insertionSort()}>Insertion Sort</button>
         {/* redesign button haha */}
       </div>
