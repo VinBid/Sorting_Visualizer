@@ -1,28 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SortingVisualizing.css';
 import { getMergeSortAnimations, getInsertionSortAnimations, getQuickSortAnimations, getBubbleSortAnimations} from './SortingAlgo';
-
-const ANIMATION_MS_SPEED = 15;
-const NUM_ELEMENTS = 20;
+import Slider from 'react-input-slider';
 
 export default class SortingVisualizing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       array: [], // array starts empty
+      animationSpeed: 6,
+      numElements: 600,
+      running: false,
     };
   }
 
   componentDidMount() {
-    this.resetArray(NUM_ELEMENTS); // add interval value with slider!
+    this.resetArray(this.state.numElements);
+    this.setState({ animations: [] });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.numElements !== this.state.numElements) {
+      this.resetArray(this.state.numElements);
+    }
   }
 
   resetArray(number_vals) {
     const array = [];
     for (let i = 0; i < number_vals; i++) {
-      array.push(this.pushRandIntInterval(5, 700));
+      array.push(this.pushRandIntInterval(5, 575));
     }
     this.setState({ array });
+    this.setState({ animations: [] });
   }
 
   pushRandIntInterval(min, max) {
@@ -30,132 +39,134 @@ export default class SortingVisualizing extends React.Component {
   }
 
   mergeSort() {
-    const animations = getMergeSortAnimations(this.state.array);
+    const { animationSpeed, array } = this.state;
+    const animations = getMergeSortAnimations(array);
     const arrayBars = document.getElementsByClassName('barArray');
-    const arrayBarsArray = Array.from(arrayBars);
+    const barsArray = Array.from(arrayBars);
 
     for (let i = 0; i < animations.length; i++) {
       const [barOneID, newHeight] = animations[i];
-      // Every first element and second element in array is a color change. Every third is a swap
-      if (i % 3 !== 2) { // this is used so we know which iteration is a color change and which is a swap
+
+      if (i % 3 !== 2) {
         const styleBarOne = arrayBars[barOneID].style;
         const styleBarTwo = arrayBars[newHeight].style;
-        const whichColor = i % 3 === 0 ? 'red' : 'green'; // if it is 0 this var stores first color. Else stores second color
+        const whichColor = i % 3 === 0 ? 'red' : 'green';
 
-        setTimeout(() => { // timeout allows us to adjust animation speed to our liking
+        setTimeout(() => {
           styleBarOne.background = whichColor;
           styleBarTwo.background = whichColor;
-        }, i * ANIMATION_MS_SPEED);
+        }, i * animationSpeed);
       } else {
-        if (arrayBarsArray[barOneID]) {
+        if (arrayBars[barOneID]) {
           setTimeout(() => {
-            const barOneStyle = arrayBarsArray[barOneID].style;
-            barOneStyle.height = `${newHeight}px`; // Update the height of the bar to visualize the swap
-          }, i * ANIMATION_MS_SPEED);
+            const barOneStyle = barsArray[barOneID].style;
+            barOneStyle.height = `${newHeight}px`;
+          }, i * animationSpeed);
         }
       }
     }
   }
 
   quickSort() {
-    const animations = getQuickSortAnimations(this.state.array);
+    const { animationSpeed, array } = this.state;
+    const animations = getQuickSortAnimations(array);
     const arrayBars = document.getElementsByClassName('barArray');
     const barsArray = Array.from(arrayBars);
-  
+
     for (let i = 0; i < animations.length; i++) {
       const [curr, before, currValue, beforeValue] = animations[i];
-  
+
       if (currValue === -1) {
         if (beforeValue === -1) {
-          // Highlight the elements being compared (color 1)
           setTimeout(() => {
             barsArray[curr].style.backgroundColor = 'red';
             barsArray[before].style.backgroundColor = 'red';
-          }, i * ANIMATION_MS_SPEED);
+          }, i * animationSpeed);
         } else {
-          // Set the color back to green after highlighting (color 2)
           setTimeout(() => {
             barsArray[curr].style.backgroundColor = 'green';
             barsArray[before].style.backgroundColor = 'green';
-          }, i * ANIMATION_MS_SPEED);
+          }, i * animationSpeed);
         }
       } else {
-        // Swap the elements and update their height
         setTimeout(() => {
           barsArray[curr].style.height = `${beforeValue}px`;
           barsArray[before].style.height = `${currValue}px`;
-        }, i * ANIMATION_MS_SPEED);
+        }, i * animationSpeed);
       }
     }
   }
 
   bubbleSort() {
-    const animations = getBubbleSortAnimations(this.state.array);
+    const { animationSpeed, array } = this.state;
+    const animations = getBubbleSortAnimations(array);
     const arrayBars = document.getElementsByClassName('barArray');
     const barsArray = Array.from(arrayBars);
-  
+
     for (let i = 0; i < animations.length; i++) {
       const [curr, before, currValue, beforeValue] = animations[i];
-  
+
       if (currValue === -1) {
         if (beforeValue === -1) {
-          // Highlight the elements being compared (color 1)
           setTimeout(() => {
             barsArray[curr].style.backgroundColor = 'red';
             barsArray[before].style.backgroundColor = 'red';
-          }, i * ANIMATION_MS_SPEED);
+          }, i * animationSpeed);
         } else {
-          // Set the color back to green after highlighting (color 2)
           setTimeout(() => {
             barsArray[curr].style.backgroundColor = 'green';
             barsArray[before].style.backgroundColor = 'green';
-          }, i * ANIMATION_MS_SPEED);
+          }, i * animationSpeed);
         }
       } else {
-        // Swap the elements and update their height
         setTimeout(() => {
           barsArray[curr].style.height = `${beforeValue}px`;
           barsArray[before].style.height = `${currValue}px`;
-        }, i * ANIMATION_MS_SPEED);
+        }, i * animationSpeed);
       }
     }
   };
 
   insertionSort() {
-    const animations = getInsertionSortAnimations(this.state.array);
+    const { animationSpeed, array } = this.state;
+    const animations = getInsertionSortAnimations(array);
     const arrayBars = document.getElementsByClassName('barArray');
     const barsArray = Array.from(arrayBars);
-  
+
     for (let i = 0; i < animations.length; i++) {
       const [curr, before, currValue, beforeValue] = animations[i];
-  
+
       if (currValue === -1) {
         if (beforeValue === -1) {
-          // Highlight the elements being compared (color 1)
           setTimeout(() => {
             barsArray[curr].style.backgroundColor = 'red';
             barsArray[before].style.backgroundColor = 'red';
-          }, i * ANIMATION_MS_SPEED);
+          }, i * animationSpeed);
         } else {
-          // Set the color back to green after highlighting (color 2)
           setTimeout(() => {
             barsArray[curr].style.backgroundColor = 'green';
             barsArray[before].style.backgroundColor = 'green';
-          }, i * ANIMATION_MS_SPEED);
+          }, i * animationSpeed);
         }
       } else {
-        // Swap the elements and update their height
         setTimeout(() => {
           barsArray[curr].style.height = `${beforeValue}px`;
           barsArray[before].style.height = `${currValue}px`;
-        }, i * ANIMATION_MS_SPEED);
+        }, i * animationSpeed);
       }
     }
   };
-    
+
+  handleAnimationSpeedChange = (value) => {
+    this.setState({ animationSpeed: value });
+  };
+
+  handleNumElementsChange = (value) => {
+    this.setState({ numElements: value });
+  };
 
   render() {
-    const { array } = this.state;
+    const { array, animationSpeed, numElements } = this.state;
     return (
       <div className="container">
         <div className="arrayContainer">
@@ -163,14 +174,62 @@ export default class SortingVisualizing extends React.Component {
             <div className="barArray" key={idx} style={{ height: `${value}px` }} />
           ))}
         </div>
-        <button onClick={() => this.resetArray(NUM_ELEMENTS)}>Generate Array</button>
-        <button onClick={() => this.mergeSort()}>Merge Sort</button>
-        <button onClick={() => this.quickSort()}>Quick Sort</button>
-        <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
-        <button onClick={() => this.insertionSort()}>Insertion Sort</button>
+
+        <div className='footerObject'>
+            <div className='sliders'>
+
+            <Slider
+              axis="x"
+              x={animationSpeed}
+              xmin={1}
+              xmax={20}
+              onChange={({ x }) => this.handleAnimationSpeedChange(x)}
+              styles={{
+                track: {
+                  backgroundColor: 'white', // Set your desired color here
+                },
+                active: {
+                  backgroundColor: 'green', // Set your desired color here
+                },
+                thumb: {
+                  backgroundColor: 'white', // Set your desired color here
+                },
+              }}
+            />
+            <span> Speed: {animationSpeed} ms </span>
+
+            <Slider
+              axis="x"
+              x={numElements}
+              xmin={10}
+              xmax={500}
+              onChange={({ x }) => this.handleNumElementsChange(x)}
+              styles={{
+                track: {
+                  backgroundColor: 'white', // Set your desired color here
+                },
+                active: {
+                  backgroundColor: 'green', // Set your desired color here
+                },
+                thumb: {
+                  backgroundColor: 'white', // Set your desired color here
+                },
+              }}
+            />
+            <span>Elements: {numElements} </span>
+          </div>
+
+        </div>
+
+        <div className='buttons'>
+            <button className="sorting-button" onClick={() => this.resetArray(numElements)}>Generate Array</button>
+            <button className="sorting-button" onClick={() => this.mergeSort()}>Merge Sort</button>
+            <button className="sorting-button" onClick={() => this.quickSort()}>Quick Sort</button>
+            <button className="sorting-button" onClick={() => this.bubbleSort()}>Bubble Sort</button>
+            <button className="sorting-button" onClick={() => this.insertionSort()}>Insertion Sort</button>
+          </div>
         {/* redesign button haha */}
       </div>
     );
   }
 }
-

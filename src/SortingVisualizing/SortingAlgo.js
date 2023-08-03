@@ -144,15 +144,20 @@ const quickSort = (array, low, high, animations) => {
 
 
 const bubbleSort = (array, animations) => {
-  
+  let swapped;
   for(let i = 1; i < array.length; i++) {
+    swapped = false;
     for(let j = 0; j < array.length - i; j++) {
       animations.push([j, j + 1, -1, -1]);
       animations.push([j, j + 1, -1, -2]);
       if(array[j] > array[j + 1]) {
+        swapped = true;
         animations.push([j, j + 1, array[j], array[j + 1]]);
         swap(array, j, j + 1);
       }
+    }
+    if(swapped == false) {
+      break;
     }
   }
 };

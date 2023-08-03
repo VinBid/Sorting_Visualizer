@@ -3,11 +3,23 @@
     color: white;
 }
 
+/* SortingVisualizing.css */
+
+:root {
+    --slider-track-color: #3f51b5;
+    --slider-thumb-color: #f44336;
+    --slider-thumb-hover-color: #e91e63;
+    --slider-track-color-second: #237925;
+    --slider-thumb-color-second: #ff9800;
+    --slider-thumb-hover-color-second: #ffc107;
+  }
+  
+
 .arrayContainer {
     display: flex; 
     align-items: flex-end;
     justify-content: center; /* Center items horizontally */
-    height : 680px;
+    height : 540px;
     padding-top: 3rem; 
     padding-right: 3rem; 
     padding-bottom: 1rem; 
@@ -20,4 +32,149 @@
     background-color: green;
     margin: 0 1px;
 } 
+
+.footerObject {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between; /* Add this line to center the flex item horizontally */
+    padding-left: 13rem;
+    padding-right: 15rem;
+    padding-bottom: 0.2rem;
+    
+  }
+
+
+  .sliders {
+    display: flex;
+    flex-shrink: 1;
+    align-items: center; /* Center the sliders horizontally within .sliders */
+    justify-content: space-between;
+    margin-top: 1rem; 
+    padding-bottom: 1rem;
+
+    
+  }
+  
+  .sliderContainer {
+    /* Optional: Add some additional spacing between each slider */
+    margin-bottom: 1rem;
+  }
+  
+  .slider-x {
+    /* Customize the color of the slider thumb (handle) */
+    background-color: #ff0000; /* Replace #ff0000 with your desired color */
+  }
+  
+  .slider-x::after {
+    /* Customize the color of the slider track (line) */
+    background-color: #00ff00; /* Replace #00ff00 with your desired color */
+  }
+
+  .sliders span {
+    margin-top: 0.5rem; /* Add some spacing between the slider and the label */
+    font-size: 15px; /* Adjust the font size as needed */
+    font-weight: bold; /* Optionally, make the labels bold */
+    padding-left: 1rem;
+    padding-right: 2rem;
+    padding-bottom: 0.5rem;
+  }
+/* SortingVisualizing.css */
+
+/* Styles for the animation speed slider */
+/* .sorting-button {
+    background-color: green;
+    color: white;
+    font-size: 15px;
+    padding: 3px 15px, 1px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  } */
+
+/* CSS */
+.sorting-button {
+    font-weight: bold;
+  align-items: center;
+  appearance: none;
+  background-color: green;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 30px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.sorting-button:hover {
+    font-weight: bold;
+  background: #F6F9FE;
+  color: green;
+}
+
+.sorting-button:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.sorting-button:focus {
+  outline: none;
+  border: 2px solid white;
+}
+
+.sorting-button:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.sorting-button:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.sorting-button:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.sorting-button:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.sorting-button:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+  
+.footerObject {
+    display: flex;
+    justify-content: center;
+
+}
+
 /* enniku SM vannum */
