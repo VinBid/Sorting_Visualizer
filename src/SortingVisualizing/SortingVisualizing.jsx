@@ -3,14 +3,17 @@ import './SortingVisualizing.css';
 import { getMergeSortAnimations, getInsertionSortAnimations, getQuickSortAnimations, getBubbleSortAnimations} from './SortingAlgo';
 import Slider from 'react-input-slider';
 
+const ACCENTCOLOR = 'green'
+
 export default class SortingVisualizing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      array: [], // array starts empty
+      array: [],
       animationSpeed: 6,
-      numElements: 600,
-      running: false,
+      numElements: 500,
+      animations: [], // Keep a reference to the setTimeout functions
+      isRunning: false,
     };
   }
 
@@ -26,135 +29,236 @@ export default class SortingVisualizing extends React.Component {
   }
 
   resetArray(number_vals) {
+    if (this.state.isRunning) {
+      this.stopSorting();
+    }
+  
     const array = [];
     for (let i = 0; i < number_vals; i++) {
       array.push(this.pushRandIntInterval(5, 575));
     }
-    this.setState({ array });
-    this.setState({ animations: [] });
+    this.setState({ array, animations: [], isRunning: false }, () => {
+      // Set the background color of all bars to green after generating the new array
+      const arrayBars = document.getElementsByClassName('barArray');
+      for (let i = 0; i < arrayBars.length; i++) {
+        arrayBars[i].style.background = ACCENTCOLOR;
+      }
+    });
   }
+  
+  
 
   pushRandIntInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   mergeSort() {
-    const { animationSpeed, array } = this.state;
-    const animations = getMergeSortAnimations(array);
-    const arrayBars = document.getElementsByClassName('barArray');
-    const barsArray = Array.from(arrayBars);
-
-    for (let i = 0; i < animations.length; i++) {
-      const [barOneID, newHeight] = animations[i];
-
-      if (i % 3 !== 2) {
-        const styleBarOne = arrayBars[barOneID].style;
-        const styleBarTwo = arrayBars[newHeight].style;
-        const whichColor = i % 3 === 0 ? 'red' : 'green';
-
-        setTimeout(() => {
-          styleBarOne.background = whichColor;
-          styleBarTwo.background = whichColor;
-        }, i * animationSpeed);
-      } else {
-        if (arrayBars[barOneID]) {
-          setTimeout(() => {
-            const barOneStyle = barsArray[barOneID].style;
-            barOneStyle.height = `${newHeight}px`;
-          }, i * animationSpeed);
-        }
-      }
+    if (this.state.isRunning) {
+      return;
     }
-  }
-
-  quickSort() {
-    const { animationSpeed, array } = this.state;
-    const animations = getQuickSortAnimations(array);
-    const arrayBars = document.getElementsByClassName('barArray');
-    const barsArray = Array.from(arrayBars);
-
-    for (let i = 0; i < animations.length; i++) {
-      const [curr, before, currValue, beforeValue] = animations[i];
-
-      if (currValue === -1) {
-        if (beforeValue === -1) {
-          setTimeout(() => {
-            barsArray[curr].style.backgroundColor = 'red';
-            barsArray[before].style.backgroundColor = 'red';
+  
+    this.setState({ isRunning: true }, () => {
+      const { animationSpeed, array } = this.state;
+      const animations = getMergeSortAnimations(array);
+      const arrayBars = document.getElementsByClassName('barArray');
+      const barsArray = Array.from(arrayBars);
+      let continueSorting = true;
+  
+      for (let i = 0; i < animations.length; i++) {
+        const [barOneID, newHeight] = animations[i];
+  
+        if (!continueSorting) {
+          break;
+        }
+  
+        if (i % 3 !== 2) {
+          const styleBarOne = arrayBars[barOneID].style;
+          const styleBarTwo = arrayBars[newHeight].style;
+          const whichColor = i % 3 === 0 ? 'red' : ACCENTCOLOR;
+  
+          const timeout1 = setTimeout(() => {
+            styleBarOne.background = whichColor;
+            styleBarTwo.background = whichColor;
           }, i * animationSpeed);
+  
+          this.state.animations.push(timeout1);
         } else {
-          setTimeout(() => {
-            barsArray[curr].style.backgroundColor = 'green';
-            barsArray[before].style.backgroundColor = 'green';
-          }, i * animationSpeed);
+          if (arrayBars[barOneID]) {
+            const timeout2 = setTimeout(() => {
+              const barOneStyle = barsArray[barOneID].style;
+              barOneStyle.height = `${newHeight}px`;
+  
+              // If this is the last animation, mark the sorting as finished
+              if (i === animations.length - 1) {
+                this.setState({ isRunning: false });
+              }
+            }, i * animationSpeed);
+  
+            this.state.animations.push(timeout2);
+          }
         }
-      } else {
-        setTimeout(() => {
-          barsArray[curr].style.height = `${beforeValue}px`;
-          barsArray[before].style.height = `${currValue}px`;
-        }, i * animationSpeed);
       }
+    });
+  }
+  
+  quickSort() {
+    if (this.state.isRunning || this.state.isGeneratingArray) {
+      return;
     }
+    this.setState({ isRunning: true }, () => {
+      const { animationSpeed, array } = this.state;
+      const animations = getQuickSortAnimations(array);
+      const arrayBars = document.getElementsByClassName('barArray');
+      const barsArray = Array.from(arrayBars);
+      let continueSorting = true;
+
+      for (let i = 0; i < animations.length; i++) {
+        const [curr, before, currValue, beforeValue] = animations[i];
+        if (!continueSorting) {
+          break;
+        }
+
+        if (currValue === -1) {
+          if (beforeValue === -1) {
+            const timeout1 = setTimeout(() => {
+              barsArray[curr].style.backgroundColor = 'red';
+              barsArray[before].style.backgroundColor = 'red';
+              if (i === animations.length - 1) {
+                this.setState({ isRunning: false });
+              }
+            }, i * animationSpeed);
+            this.state.animations.push(timeout1);
+          } else {
+            const timeout2 = setTimeout(() => {
+              barsArray[curr].style.backgroundColor = ACCENTCOLOR;
+              barsArray[before].style.backgroundColor = ACCENTCOLOR;
+              if (i === animations.length - 1) {
+                this.setState({ isRunning: false });
+              }
+            }, i * animationSpeed);
+            this.state.animations.push(timeout2);
+
+          }
+        } else {
+          const timeout3 = setTimeout(() => {
+            barsArray[curr].style.height = `${beforeValue}px`;
+            barsArray[before].style.height = `${currValue}px`;
+            
+          }, i * animationSpeed);
+          this.state.animations.push(timeout3);
+
+        }
+      }
+
+      const timeout4 = setTimeout(() => {
+        this.setState({ isRunning: false });
+      }, animations.length * animationSpeed);
+      this.state.animations.push(timeout4);
+
+
+    });
+
   }
 
   bubbleSort() {
-    const { animationSpeed, array } = this.state;
-    const animations = getBubbleSortAnimations(array);
-    const arrayBars = document.getElementsByClassName('barArray');
-    const barsArray = Array.from(arrayBars);
-
-    for (let i = 0; i < animations.length; i++) {
-      const [curr, before, currValue, beforeValue] = animations[i];
-
-      if (currValue === -1) {
-        if (beforeValue === -1) {
-          setTimeout(() => {
-            barsArray[curr].style.backgroundColor = 'red';
-            barsArray[before].style.backgroundColor = 'red';
-          }, i * animationSpeed);
-        } else {
-          setTimeout(() => {
-            barsArray[curr].style.backgroundColor = 'green';
-            barsArray[before].style.backgroundColor = 'green';
-          }, i * animationSpeed);
-        }
-      } else {
-        setTimeout(() => {
-          barsArray[curr].style.height = `${beforeValue}px`;
-          barsArray[before].style.height = `${currValue}px`;
-        }, i * animationSpeed);
-      }
+    if (this.state.isRunning) {
+      return;
     }
+    this.setState({ isRunning: true }, () => {
+      const { animationSpeed, array } = this.state;
+      const animations = getBubbleSortAnimations(array);
+      const arrayBars = document.getElementsByClassName('barArray');
+      const barsArray = Array.from(arrayBars);
+      let continueSorting = true;
+
+      for (let i = 0; i < animations.length; i++) {
+        const [curr, before, currValue, beforeValue] = animations[i];
+        if (!continueSorting) {
+          break;
+        }
+
+        if (currValue === -1) {
+          if (beforeValue === -1) {
+            const timeout1 = setTimeout(() => {
+              barsArray[curr].style.backgroundColor = 'red';
+              barsArray[before].style.backgroundColor = 'red';
+            }, i * animationSpeed);
+            this.state.animations.push(timeout1);
+
+          } else {
+            const timeout2 = setTimeout(() => {
+              barsArray[curr].style.backgroundColor = ACCENTCOLOR;
+              barsArray[before].style.backgroundColor = ACCENTCOLOR;
+            }, i * animationSpeed);
+            this.state.animations.push(timeout2);
+
+          }
+        } else {
+          const timeout3 = setTimeout(() => {
+            barsArray[curr].style.height = `${beforeValue}px`;
+            barsArray[before].style.height = `${currValue}px`;
+          }, i * animationSpeed);
+          this.state.animations.push(timeout3);
+
+        }
+      }
+      const timeout4 = setTimeout(() => {
+        this.setState({ isRunning: false });
+      }, animations.length * animationSpeed);
+      this.state.animations.push(timeout4);
+
+    });
+
   };
 
   insertionSort() {
-    const { animationSpeed, array } = this.state;
-    const animations = getInsertionSortAnimations(array);
-    const arrayBars = document.getElementsByClassName('barArray');
-    const barsArray = Array.from(arrayBars);
-
-    for (let i = 0; i < animations.length; i++) {
-      const [curr, before, currValue, beforeValue] = animations[i];
-
-      if (currValue === -1) {
-        if (beforeValue === -1) {
-          setTimeout(() => {
-            barsArray[curr].style.backgroundColor = 'red';
-            barsArray[before].style.backgroundColor = 'red';
-          }, i * animationSpeed);
-        } else {
-          setTimeout(() => {
-            barsArray[curr].style.backgroundColor = 'green';
-            barsArray[before].style.backgroundColor = 'green';
-          }, i * animationSpeed);
-        }
-      } else {
-        setTimeout(() => {
-          barsArray[curr].style.height = `${beforeValue}px`;
-          barsArray[before].style.height = `${currValue}px`;
-        }, i * animationSpeed);
-      }
+    if (this.state.isRunning) {
+      return;
     }
+    this.setState({ isRunning: true }, () => {
+      const { animationSpeed, array } = this.state;
+      const animations = getInsertionSortAnimations(array);
+      const arrayBars = document.getElementsByClassName('barArray');
+      const barsArray = Array.from(arrayBars);
+      let continueSorting = true;
+
+      for (let i = 0; i < animations.length; i++) {
+        const [curr, before, currValue, beforeValue] = animations[i];
+        if (!continueSorting) {
+          break;
+        }
+
+        if (currValue === -1) {
+          if (beforeValue === -1) {
+            const timeout1 = setTimeout(() => {
+              barsArray[curr].style.backgroundColor = 'red';
+              barsArray[before].style.backgroundColor = 'red';
+            }, i * animationSpeed);
+            this.state.animations.push(timeout1);
+
+          } else {
+            const timeout2 = setTimeout(() => {
+              barsArray[curr].style.backgroundColor = ACCENTCOLOR;
+              barsArray[before].style.backgroundColor = ACCENTCOLOR;
+            }, i * animationSpeed);
+            this.state.animations.push(timeout2);
+
+          }
+        } else {
+          const timeout3 = setTimeout(() => {
+            barsArray[curr].style.height = `${beforeValue}px`;
+            barsArray[before].style.height = `${currValue}px`;
+          }, i * animationSpeed);
+          this.state.animations.push(timeout3);
+
+        }
+      }
+      const timeout4 = setTimeout(() => {
+        this.setState({ isRunning: false });
+      }, animations.length * animationSpeed);
+      this.state.animations.push(timeout4);
+
+    });
   };
 
   handleAnimationSpeedChange = (value) => {
@@ -164,6 +268,13 @@ export default class SortingVisualizing extends React.Component {
   handleNumElementsChange = (value) => {
     this.setState({ numElements: value });
   };
+
+  stopSorting() {
+    this.state.animations.forEach(timeout => clearTimeout(timeout));
+    this.setState({ isRunning: false, animations: [] });
+  }
+  
+
 
   render() {
     const { array, animationSpeed, numElements } = this.state;
@@ -189,7 +300,7 @@ export default class SortingVisualizing extends React.Component {
                   backgroundColor: 'white', // Set your desired color here
                 },
                 active: {
-                  backgroundColor: 'green', // Set your desired color here
+                  backgroundColor: ACCENTCOLOR, // Set your desired color here
                 },
                 thumb: {
                   backgroundColor: 'white', // Set your desired color here
@@ -209,7 +320,7 @@ export default class SortingVisualizing extends React.Component {
                   backgroundColor: 'white', // Set your desired color here
                 },
                 active: {
-                  backgroundColor: 'green', // Set your desired color here
+                  backgroundColor: ACCENTCOLOR, // Set your desired color here
                 },
                 thumb: {
                   backgroundColor: 'white', // Set your desired color here
@@ -222,7 +333,12 @@ export default class SortingVisualizing extends React.Component {
         </div>
 
         <div className='buttons'>
-            <button className="sorting-button" onClick={() => this.resetArray(numElements)}>Generate Array</button>
+            <button className="sorting-button" onClick={() => {
+              this.setState({ sorting: false });
+              this.resetArray(numElements);
+              }}>
+                Generate Array
+            </button>            
             <button className="sorting-button" onClick={() => this.mergeSort()}>Merge Sort</button>
             <button className="sorting-button" onClick={() => this.quickSort()}>Quick Sort</button>
             <button className="sorting-button" onClick={() => this.bubbleSort()}>Bubble Sort</button>

@@ -41,7 +41,6 @@
 
 .buttons {
     display: flex;
-
     align-items: center;
     justify-content: space-between; /* Add this line to center the flex item horizontally */
     padding-left: 13rem;
@@ -53,6 +52,7 @@
 
   .sliders {
     display: flex;
+    flex-wrap: wrap;
     flex-shrink: 1;
     align-items: center; /* Center the sliders horizontally within .sliders */
     justify-content: space-between;
