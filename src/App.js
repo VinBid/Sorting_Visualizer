@@ -1,11 +1,16 @@
-import logo from './logo.svg';
+import React from 'react';
 import SortingVisualizing from './SortingVisualizing/SortingVisualizing';
+import StickyHeader from './stickyHeaderObject';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <SortingVisualizing> </SortingVisualizing>
+      <StickyHeader />
+      <div className="sorting-container">
+        <SortingVisualizing />
+        
+      </div>
     </div>
   );
 }
