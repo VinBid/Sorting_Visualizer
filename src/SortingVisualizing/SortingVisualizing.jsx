@@ -262,12 +262,20 @@ export default class SortingVisualizing extends React.Component {
   };
 
   handleAnimationSpeedChange = (value) => {
-    this.setState({ animationSpeed: value });
+    const { isRunning } = this.state;
+  
+    if (!isRunning) {
+      this.setState({ animationSpeed: value });
+    }  
   };
 
   handleNumElementsChange = (value) => {
-    this.setState({ numElements: value });
-  };
+    const { isRunning } = this.state;
+  
+    if (!isRunning) {
+      this.setState({ numElements: value, isAdjusting: true }, () => {
+      });
+    }  };
 
   stopSorting() {
     this.state.animations.forEach(timeout => clearTimeout(timeout));
