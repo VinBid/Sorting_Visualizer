@@ -289,7 +289,7 @@ export default class SortingVisualizing extends React.Component {
   render() {
     const { array, animationSpeed, numElements } = this.state;
     return (
-      <div className="container">
+      <div className="container" id='visualizer'>
         <div className="arrayContainer">
           {array.map((value, idx) => (
             <div className="barArray" key={idx} style={{ height: `${value}px` }} />

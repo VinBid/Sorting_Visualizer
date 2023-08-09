@@ -4,12 +4,12 @@ import './informationalObject.css'; // Correct the filename and path
 class InformationalObject extends React.Component {
   render() {
     return (
-      <div className='InformationObject'> {/* Correct the class name */}
+      <div className='InformationObject' id='information'> {/* Correct the class name */}
         <div className='Title'>
           Sorting Algorithms
         </div>
 
-        <div className='SortingAlgoInfo' id='information'>
+        <div className='SortingAlgoInfo'>
           A sorting algorithm is an algorithm that puts elements in a list in an order.
           This usecase is extemely important in Computer Science and different algorithms have been
           divised for this usesecase. Making this procedure as quick as possible is a very important part of
