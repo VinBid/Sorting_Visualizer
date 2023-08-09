@@ -5,6 +5,8 @@ import Slider from 'react-input-slider';
 
 const ACCENTCOLOR = 'green'
 
+
+
 export default class SortingVisualizing extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +37,7 @@ export default class SortingVisualizing extends React.Component {
   
     const array = [];
     for (let i = 0; i < number_vals; i++) {
-      array.push(this.pushRandIntInterval(5, 575));
+      array.push(this.pushRandIntInterval(5, 550));
     }
     this.setState({ array, animations: [], isRunning: false }, () => {
       // Set the background color of all bars to green after generating the new array
