@@ -1,0 +1,139 @@
+:root {
+    --color: rgb(55, 53, 53);
+  }
+  
+  body {
+    background-color: var(--color);
+    margin: 0;
+  }
+  
+  .InformationObject {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #333333, #000000);
+  }
+  
+  
+  .FlexContainer1 {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    justify-content: space-between;
+  }
+  
+  .Title {
+    display: flex;
+    font-size: 100px;
+    background-color: rgba(40, 40, 40, 0.085);
+    padding-left: 2rem;
+    padding-top: 2rem;
+    font-family: 'Electrolize', Courier, monospace;
+  }
+  
+  .SortingAlgoInfo {
+    max-width: 900px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 1.6;
+    margin: 2rem;
+    padding: 1rem;
+    background-color: var(--color);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+  
+  .MergeQuickCards {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color: black;
+    
+  }
+  
+  .Card {
+    flex: 0 1 calc(50% - 1rem);
+    padding: 1.5rem;
+    background-color: white;
+    box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    transition: transform 0.2s ease-in-out;
+    background-color: var(--color);
+    margin-bottom: 2.5rem; /* Add spacing between cards */
+    border-radius: 20px; /* Add rounded corners */
+
+  }
+  
+  .Card:hover {
+    transform: scale(1.02);
+    background-color: var(--color);
+    border-radius: 20px; /* Add rounded corners */
+
+
+  }
+  
+  .CardTitle {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    background-color: var(--color);
+
+
+  }
+  
+  .CardDescription {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 1.25rem;
+    background-color: var(--color);
+  }
+  
+  .AlgoRuntimes {
+    margin-top: 1rem;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  
+  .LogCards {
+    font-size: 50px;
+    font-weight: 700;
+    
+  }
+  
+  .QuadraticCards {
+    font-size: 50px;
+    font-weight: 700;
+  }
+  
+  .InsertionBubbleCards {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color: black;
+    border-radius: 10px; /* Add rounded corners */
+
+  }
+  
+  .Runtimes {
+    max-width: 900px;
+    padding: 2rem;
+    font-size: 20px;
+    line-height: 1.6;
+    margin: 2rem;
+    padding: 1rem;
+    background-color: var(--color);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+
+  }
+
+  .AlgoRuntime {
+    background-color: var(--color);
+
+  }
+  

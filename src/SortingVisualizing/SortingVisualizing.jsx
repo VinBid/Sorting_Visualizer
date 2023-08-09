@@ -5,6 +5,8 @@ import Slider from 'react-input-slider';
 
 const ACCENTCOLOR = 'green'
 
+
+
 export default class SortingVisualizing extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +37,7 @@ export default class SortingVisualizing extends React.Component {
   
     const array = [];
     for (let i = 0; i < number_vals; i++) {
-      array.push(this.pushRandIntInterval(5, 575));
+      array.push(this.pushRandIntInterval(5, 550));
     }
     this.setState({ array, animations: [], isRunning: false }, () => {
       // Set the background color of all bars to green after generating the new array
@@ -262,12 +264,20 @@ export default class SortingVisualizing extends React.Component {
   };
 
   handleAnimationSpeedChange = (value) => {
-    this.setState({ animationSpeed: value });
+    const { isRunning } = this.state;
+  
+    if (!isRunning) {
+      this.setState({ animationSpeed: value });
+    }  
   };
 
   handleNumElementsChange = (value) => {
-    this.setState({ numElements: value });
-  };
+    const { isRunning } = this.state;
+  
+    if (!isRunning) {
+      this.setState({ numElements: value, isAdjusting: true });
+    }
+  }
 
   stopSorting() {
     this.state.animations.forEach(timeout => clearTimeout(timeout));
@@ -279,7 +289,7 @@ export default class SortingVisualizing extends React.Component {
   render() {
     const { array, animationSpeed, numElements } = this.state;
     return (
-      <div className="container">
+      <div className="container" id='visualizer'>
         <div className="arrayContainer">
           {array.map((value, idx) => (
             <div className="barArray" key={idx} style={{ height: `${value}px` }} />
