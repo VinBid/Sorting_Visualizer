@@ -39,14 +39,24 @@ export default class SortingVisualizing extends React.Component {
     for (let i = 0; i < number_vals; i++) {
       array.push(this.pushRandIntInterval(5, 550));
     }
-    this.setState({ array, animations: [], isRunning: false }, () => {
-      // Set the background color of all bars to green after generating the new array
-      const arrayBars = document.getElementsByClassName('barArray');
-      for (let i = 0; i < arrayBars.length; i++) {
-        arrayBars[i].style.background = ACCENTCOLOR;
+  
+    const arrayBars = document.getElementsByClassName('barArray');
+    for (let i = 0; i < arrayBars.length; i++) {
+      arrayBars[i].style.background = ACCENTCOLOR;
+  
+      // Apply or remove the animation class based on the sorting state
+      if (!this.state.isRunning) {
+        arrayBars[i].classList.add('animate-transition');
+      } else {
+        arrayBars[i].classList.remove('animate-transition');
       }
-    });
+    }
+  
+    this.setState({ array, animations: [], isRunning: false });
   }
+  
+
+  
   
   
 
@@ -340,7 +350,7 @@ export default class SortingVisualizing extends React.Component {
             <span>Elements: {numElements} </span>
           </div>
 
-        </div>
+        {/* </div>  */}
 
         <div className='buttons'>
             <button className="sorting-button" onClick={() => {
@@ -356,6 +366,7 @@ export default class SortingVisualizing extends React.Component {
           </div>
         {/* redesign button haha */}
       </div>
+      </div> 
     );
   }
 }

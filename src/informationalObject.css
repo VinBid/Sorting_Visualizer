@@ -36,7 +36,7 @@
   .SortingAlgoInfo {
     max-width: 900px;
     text-align: center;
-    font-size: 20px;
+    font-size: 22px;
     line-height: 1.6;
     margin: 2rem;
     padding: 1rem;
@@ -123,7 +123,7 @@
   .Runtimes {
     max-width: 900px;
     padding: 2rem;
-    font-size: 20px;
+    font-size: 22px;
     line-height: 1.6;
     margin: 2rem;
     padding: 1rem;
@@ -134,6 +134,69 @@
 
   .AlgoRuntime {
     background-color: var(--color);
+
+  }
+
+  table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+
+  /* Apply styling to the table headers */
+.tableHeader {
+    font-size: 22px;
+    text-decoration: underline;
+  }
+  
+  /* Style the table cells */
+  .tableLabel,
+  .tableValue {
+    padding: 8px 12px;
+  }
+  
+  /* Add some spacing between table rows */
+  tr {
+    border-bottom: 1px solid '#ccc';
+  }
+  
+  /* Add a background color on table hover */
+  tr:hover {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    color: white;
+  }
+  
+  /* Add borders to the table */
+ 
+  
+  /* Add spacing between table columns */
+  td {
+    padding: 8px;
+  }
+  
+  /* Style table headers differently */
+  th {
+    padding: 12px;
+    text-align: left;
+    background-color: green;
+    text-align: center;
+
+
+  }
+  
+
+  @media screen and (max-width: 600px) {
+    .Title {
+        display: flex;
+        font-size: 70px;
+        background-color: rgba(40, 40, 40, 0.085);
+        padding-left: 2rem;
+        padding-top: 2rem;
+        font-family: 'Electrolize', Courier, monospace;
+      }
+
 
   }
   
