@@ -10,11 +10,11 @@ export default class SortingVisualizing extends React.Component {
     super(props);
     this.state = {
       array: [],
-      animationSpeed: 6,
-      numElements: 500,
+      animationSpeed: 6, //initial animation speed state
+      numElements: 500, //initial num elements state
       animations: [], 
-      isRunning: false,
-      isAdjusting: false,
+      isRunning: false, //isRunning indicator state
+      isAdjusting: false, //isAdjusting indicator state
     };
   }
 
@@ -39,9 +39,9 @@ export default class SortingVisualizing extends React.Component {
       array.push(this.pushRandIntInterval(5, 550));
     }
   
-    const arrayBars = document.getElementsByClassName('barArray');
+    const arrayBars = document.getElementsByClassName('barArray'); //adds transitions while moving slider
     for (let i = 0; i < arrayBars.length; i++) {
-      arrayBars[i].style.background = ACCENTCOLOR;
+      arrayBars[i].style.background = ACCENTCOLOR; //initializes array bars
       if (!this.state.isRunning) {
         arrayBars[i].classList.add('animate-transition');
       } else {
@@ -81,13 +81,13 @@ export default class SortingVisualizing extends React.Component {
   
         if (i % 3 !== 2) {
           const styleBarOne = arrayBars[barOneID].style;
-          const styleBarTwo = arrayBars[newHeight].style;
+          const styleBarTwo = arrayBars[newHeight].style; 
           const whichColor = i % 3 === 0 ? 'red' : ACCENTCOLOR;
   
           const timeout1 = setTimeout(() => {
             styleBarOne.background = whichColor;
             styleBarTwo.background = whichColor;
-          }, i * animationSpeed);
+          }, i * animationSpeed); //timeouts like this limit speed of animation
   
           this.state.animations.push(timeout1);
         } else {
@@ -127,11 +127,11 @@ export default class SortingVisualizing extends React.Component {
 
       for (let i = 0; i < animations.length; i++) {
         const [curr, before, currValue, beforeValue] = animations[i];
-        if (!continueSorting) {
+        if (!continueSorting) { //state var that sees if sorting still occuring
           break;
         }
 
-        if (currValue === -1) {
+        if (currValue === -1) { //these values help determine the type of animation as explained in SortingAlgo.js
           if (beforeValue === -1) {
             const timeout1 = setTimeout(() => {
               barsArray[curr].style.backgroundColor = 'red';
@@ -174,12 +174,12 @@ export default class SortingVisualizing extends React.Component {
   }
 
   bubbleSort() {
-    if (this.state.isRunning) {
+    if (this.state.isRunning) { // same logic as earlier
       return;
     }
 
     const arrayBars = document.getElementsByClassName('barArray');
-    for (let i = 0; i < arrayBars.length; i++) {
+    for (let i = 0; i < arrayBars.length; i++) { //this for loop removes adjusting element animation before actual sort animation begins
         arrayBars[i].classList.remove('animate-transition');
     }
 
@@ -221,7 +221,7 @@ export default class SortingVisualizing extends React.Component {
 
         }
       }
-      const timeout4 = setTimeout(() => {
+      const timeout4 = setTimeout(() => { 
         this.setState({ isRunning: false });
       }, animations.length * animationSpeed);
       this.state.animations.push(timeout4);

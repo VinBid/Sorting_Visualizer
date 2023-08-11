@@ -15,7 +15,7 @@ body {
 }
 
 
-.FlexContainer1 {
+.flexContainer1 {
     display: flex;
     flex-direction: column;
     padding: 2rem;
@@ -24,7 +24,7 @@ body {
     justify-content: space-between;
 }
 
-.Title {
+.titleAlgoInfo {
     display: flex;
     font-size: 100px;
     background-color: rgba(40, 40, 40, 0.085);
@@ -33,7 +33,7 @@ body {
     font-family: 'Electrolize', Courier, monospace;
 }
 
-.SortingAlgoInfo {
+.sortingAlgoInfo {
     max-width: 900px;
     text-align: center;
     font-size: 22px;
@@ -44,7 +44,7 @@ body {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-.MergeQuickCards {
+.mergeQuickCards {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -54,7 +54,7 @@ body {
 
 }
 
-.Card {
+.card {
     flex: 0 1 calc(50% - 1rem);
     padding: 1.5rem;
     background-color: white;
@@ -63,56 +63,49 @@ body {
     transition: transform 0.2s ease-in-out;
     background-color: var(--color);
     margin-bottom: 2.5rem;
-    /* Add spacing between cards */
     border-radius: 20px;
-    /* Add rounded corners */
-
 }
 
-.Card:hover {
+.card:hover {
     transform: scale(1.02);
     background-color: var(--color);
     border-radius: 20px;
-    /* Add rounded corners */
-
-
 }
 
-.CardTitle {
+.cardTitle {
     font-size: 35px;
     font-weight: bold;
     margin-bottom: 0.5rem;
     background-color: var(--color);
-
-
+    text-decoration: underline;
 }
 
-.CardDescription {
+.cardDescription {
     font-size: 16px;
     line-height: 1.5;
     padding: 1.25rem;
     background-color: var(--color);
 }
 
-.AlgoRuntimes {
+.algoRuntimes {
     margin-top: 1rem;
     font-size: 14px;
     color: #555;
 }
 
 
-.LogCards {
+.logCards {
     font-size: 50px;
     font-weight: 700;
 
 }
 
-.QuadraticCards {
+.quadraticCards {
     font-size: 50px;
     font-weight: 700;
 }
 
-.InsertionBubbleCards {
+.insertionBubbleCards {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -120,11 +113,10 @@ body {
     margin: 2rem auto;
     background-color: black;
     border-radius: 10px;
-    /* Add rounded corners */
 
 }
 
-.Runtimes {
+.runtimes {
     max-width: 900px;
     padding: 2rem;
     font-size: 22px;
@@ -133,11 +125,6 @@ body {
     padding: 1rem;
     background-color: var(--color);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-
-}
-
-.AlgoRuntime {
-    background-color: var(--color);
 
 }
 
@@ -181,7 +168,7 @@ th {
 
 
 @media screen and (max-width: 600px) {
-    .Title {
+    .titleAlgoInfo {
         display: flex;
         font-size: 70px;
         background-color: rgba(40, 40, 40, 0.085);

@@ -1,6 +1,6 @@
 * {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 
 }
 
@@ -10,121 +10,122 @@ body {
 }
 
 :root {
-    --slider-track-color: #3f51b5;
-    --slider-thumb-color: #f44336;
-    --slider-thumb-hover-color: #e91e63;
-    --slider-track-color-second: #237925;
-    --slider-thumb-color-second: #ff9800;
-    --slider-thumb-hover-color-second: #ffc107;
-    --accentColor: green
+  --slider-track-color: #3f51b5;
+  --slider-thumb-color: #f44336;
+  --slider-thumb-hover-color: #e91e63;
+  --slider-track-color-second: #237925;
+  --slider-thumb-color-second: #ff9800;
+  --slider-thumb-hover-color-second: #ffc107;
+  --accentColor: green;
+}
 
-    ;
-  }
-  
 
-  .arrayContainer {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start; /* Adjust to start content from the left edge */
-    height: 540px;
-    padding: 1.2rem 2rem 1rem 3rem;
-    overflow-x: auto;
-    position: relative; /* Add this to establish a positioning context */
-  }
-  
-  /* Add a pseudo-element to create an invisible space at the end */
-  .arrayContainer::after {
-    content: "";
-    width: 1rem; /* Match the right padding to create the desired margin */
-    flex-shrink: 0;
-  }
-  
-  /* Adjust the bars to account for the invisible space */
-  .barArray {
-    display: inline-block;
-    min-width: 0.1px;
-    flex-grow: 1;
-    flex-basis: 0;
-    background-color: var(--accentColor);
-    width: 12px;
-    margin: 0 1px;
-  }
+.arrayContainer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  /* Adjust to start content from the left edge */
+  height: 540px;
+  padding: 1.2rem 2rem 1rem 3rem;
+  overflow-x: auto;
+  position: relative;
+  /* Add this to establish a positioning context */
+}
 
-  
-  .barArray.animate-transition {
-    transition: height 0.3s ease-in-out;
-  }
+/* Add a pseudo-element to create an invisible space at the end */
+.arrayContainer::after {
+  content: "";
+  width: 1rem;
+  /* Match the right padding to create the desired margin */
+  flex-shrink: 0;
+}
+
+/* Adjust the bars to account for the invisible space */
+.barArray {
+  display: inline-block;
+  min-width: 0.1px;
+  flex-grow: 1;
+  flex-basis: 0;
+  background-color: var(--accentColor);
+  width: 12px;
+  margin: 0 1px;
+}
+
+
+.barArray.animate-transition {
+  transition: height 0.3s ease-in-out;
+}
 
 .footerObject {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .buttons {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 13rem;
-    padding-right: 15rem;
-    padding-bottom: 2.5rem;
-    gap: 5rem;
-    flex-shrink: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 13rem;
+  padding-right: 15rem;
+  padding-bottom: 2.5rem;
+  gap: 5rem;
+  flex-shrink: 1;
 
-  }
+}
 
 
-  .sliders {
-    display: flex;
-    flex-wrap: wrap;
-    flex-shrink: 1;
-    align-items: center; 
-    justify-content: space-between;
-    margin-top: 1rem; 
-    padding-bottom: 1rem;
+.sliders {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 1;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
 
-  }
-  
-  .sliderContainer {
-    margin-bottom: 1rem;
+}
 
-  }
-  
-  .sliderX {
-    background-color: #ff0000; 
+.sliderContainer {
+  margin-bottom: 1rem;
 
-  }
-  
-  .sliderX::after {
-    background-color: #00ff00; 
+}
 
-  }
+.sliderX {
+  background-color: #ff0000;
 
-  .sliders span {
-    margin-top: 0.5rem;
-    font-size: 15px; 
-    font-weight: bold; 
-    padding-left: 1rem;
-    padding-right: 2rem;
-    padding-bottom: 0.5rem;
-  }
+}
+
+.sliderX::after {
+  background-color: #00ff00;
+
+}
+
+.sliders span {
+  margin-top: 0.5rem;
+  font-size: 15px;
+  font-weight: bold;
+  padding-left: 1rem;
+  padding-right: 2rem;
+  padding-bottom: 0.5rem;
+}
 
 .sortingButton {
   flex-shrink: 1;
-    font-weight: bold;
+  font-weight: bold;
   align-items: center;
   appearance: none;
   background-color: var(--accentColor);
   border-radius: 24px;
   border-style: none;
-  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
   box-sizing: border-box;
   color: white;
   cursor: pointer;
   display: inline-flex;
   fill: currentcolor;
-  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   height: 30px;
@@ -137,17 +138,17 @@ body {
   position: relative;
   text-align: center;
   text-transform: none;
-  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   width: auto;
-  will-change: transform,opacity;
+  will-change: transform, opacity;
   z-index: 0;
 }
 
 .sortingButton:hover {
-    font-weight: bold;
+  font-weight: bold;
   background: #F6F9FE;
   color: var(--accentColor);
 }
@@ -181,10 +182,10 @@ body {
 .sortingButton:disabled {
   box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }
-  
+
 .footerObject {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 
 }
 
@@ -194,21 +195,22 @@ body {
     padding-right: 5rem;
     gap: 1rem;
   }
+
   .sortingButton {
     flex-shrink: 1;
-      font-weight: bold;
+    font-weight: bold;
     align-items: center;
     appearance: none;
     background-color: var(--accentColor);
     border-radius: 24px;
     border-style: none;
-    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
     box-sizing: border-box;
     color: white;
     cursor: pointer;
     display: inline-flex;
     fill: currentcolor;
-    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
     font-size: 10px;
     font-weight: 500;
     height: 30px;
@@ -221,21 +223,22 @@ body {
     position: relative;
     text-align: center;
     text-transform: none;
-    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
     width: auto;
-    will-change: transform,opacity;
+    will-change: transform, opacity;
     z-index: 0;
   }
+
   .sliders {
     display: flex;
     flex-wrap: wrap;
     flex-shrink: 1;
-    align-items: center; /* Center the sliders horizontally within .sliders */
+    align-items: center;
     justify-content: space-between;
-    margin-top: 1rem; 
+    margin-top: 1rem;
     padding-bottom: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -249,9 +252,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-shrink: 1;
-    align-items: center; /* Center the sliders horizontally within .sliders */
+    align-items: center;
     justify-content: space-between;
-    margin-top: 1rem; 
+    margin-top: 1rem;
     padding-bottom: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -259,7 +262,7 @@ body {
 
 
   }
-  
+
 }
 
 /* For screens below 500px */
@@ -269,21 +272,22 @@ body {
     padding-right: 2rem;
     gap: 1rem;
   }
+
   .sortingButton {
     flex-shrink: 1;
-      font-weight: bold;
+    font-weight: bold;
     align-items: center;
     appearance: none;
     background-color: var(--accentColor);
     border-radius: 24px;
     border-style: none;
-    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
     box-sizing: border-box;
     color: white;
     cursor: pointer;
     display: inline-flex;
     fill: currentcolor;
-    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
     font-size: 10px;
     font-weight: 500;
     height: 30px;
@@ -296,12 +300,12 @@ body {
     position: relative;
     text-align: center;
     text-transform: none;
-    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
     width: auto;
-    will-change: transform,opacity;
+    will-change: transform, opacity;
     z-index: 0;
   }
 
@@ -309,13 +313,11 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-shrink: 1;
-    align-items: center; /* Center the sliders horizontally within .sliders */
+    align-items: center;
     justify-content: space-between;
-    margin-top: 1rem; 
+    margin-top: 1rem;
     padding-bottom: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
-
-
   }
-} /* enniku SM vannum */
+}
