@@ -4,7 +4,7 @@ import './informationalObject.css'; // Correct the filename and path
 class InformationalObject extends React.Component {
   render() {
     return (
-    <div className='InformationObject' id='information'>
+    <div className='informationObject' id='information'>
       <div className='Title'>
         Sorting Algorithms
       </div>

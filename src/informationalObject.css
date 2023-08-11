@@ -1,39 +1,39 @@
 :root {
     --color: rgb(55, 53, 53);
-  }
-  
-  body {
+}
+
+body {
     background-color: var(--color);
     margin: 0;
-  }
-  
-  .InformationObject {
+}
+
+.informationObject {
     display: flex;
     align-items: center;
     flex-direction: column;
     background: linear-gradient(to bottom, #333333, #000000);
-  }
-  
-  
-  .FlexContainer1 {
+}
+
+
+.FlexContainer1 {
     display: flex;
     flex-direction: column;
     padding: 2rem;
     flex-wrap: wrap;
     flex-shrink: 1;
     justify-content: space-between;
-  }
-  
-  .Title {
+}
+
+.Title {
     display: flex;
     font-size: 100px;
     background-color: rgba(40, 40, 40, 0.085);
     padding-left: 2rem;
     padding-top: 2rem;
     font-family: 'Electrolize', Courier, monospace;
-  }
-  
-  .SortingAlgoInfo {
+}
+
+.SortingAlgoInfo {
     max-width: 900px;
     text-align: center;
     font-size: 22px;
@@ -43,18 +43,18 @@
     background-color: var(--color);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 }
-  
-  .MergeQuickCards {
+
+.MergeQuickCards {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     max-width: 800px;
     margin: 2rem auto;
     background-color: black;
-    
-  }
-  
-  .Card {
+
+}
+
+.Card {
     flex: 0 1 calc(50% - 1rem);
     padding: 1.5rem;
     background-color: white;
@@ -62,65 +62,69 @@
     border-radius: 5px;
     transition: transform 0.2s ease-in-out;
     background-color: var(--color);
-    margin-bottom: 2.5rem; /* Add spacing between cards */
-    border-radius: 20px; /* Add rounded corners */
+    margin-bottom: 2.5rem;
+    /* Add spacing between cards */
+    border-radius: 20px;
+    /* Add rounded corners */
 
-  }
-  
-  .Card:hover {
+}
+
+.Card:hover {
     transform: scale(1.02);
     background-color: var(--color);
-    border-radius: 20px; /* Add rounded corners */
+    border-radius: 20px;
+    /* Add rounded corners */
 
 
-  }
-  
-  .CardTitle {
+}
+
+.CardTitle {
     font-size: 35px;
     font-weight: bold;
     margin-bottom: 0.5rem;
     background-color: var(--color);
 
 
-  }
-  
-  .CardDescription {
+}
+
+.CardDescription {
     font-size: 16px;
     line-height: 1.5;
     padding: 1.25rem;
     background-color: var(--color);
-  }
-  
-  .AlgoRuntimes {
+}
+
+.AlgoRuntimes {
     margin-top: 1rem;
     font-size: 14px;
     color: #555;
-  }
-  
-  
-  .LogCards {
+}
+
+
+.LogCards {
     font-size: 50px;
     font-weight: 700;
-    
-  }
-  
-  .QuadraticCards {
+
+}
+
+.QuadraticCards {
     font-size: 50px;
     font-weight: 700;
-  }
-  
-  .InsertionBubbleCards {
+}
+
+.InsertionBubbleCards {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     max-width: 800px;
     margin: 2rem auto;
     background-color: black;
-    border-radius: 10px; /* Add rounded corners */
+    border-radius: 10px;
+    /* Add rounded corners */
 
-  }
-  
-  .Runtimes {
+}
+
+.Runtimes {
     max-width: 900px;
     padding: 2rem;
     font-size: 22px;
@@ -130,64 +134,53 @@
     background-color: var(--color);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 
-  }
+}
 
-  .AlgoRuntime {
+.AlgoRuntime {
     background-color: var(--color);
 
-  }
+}
 
-  table {
+table {
     margin: 0 auto;
     border-collapse: collapse;
     border: 1px solid #ccc;
     width: 100%;
-  }
+}
 
-  /* Apply styling to the table headers */
 .tableHeader {
     font-size: 22px;
     text-decoration: underline;
-  }
-  
-  /* Style the table cells */
-  .tableLabel,
-  .tableValue {
+}
+
+.tableLabel,
+.tableValue {
     padding: 8px 12px;
-  }
-  
-  /* Add some spacing between table rows */
-  tr {
+}
+
+tr {
     border-bottom: 1px solid '#ccc';
-  }
-  
-  /* Add a background color on table hover */
-  tr:hover {
+}
+
+tr:hover {
     background-color: #f5f5f5;
     font-weight: bold;
     color: white;
-  }
-  
-  /* Add borders to the table */
- 
-  
-  /* Add spacing between table columns */
-  td {
+}
+
+td {
     padding: 8px;
-  }
-  
-  /* Style table headers differently */
-  th {
+}
+
+th {
     padding: 12px;
     text-align: left;
     background-color: green;
     text-align: center;
+}
 
 
-  }
-  
-
-  @media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .Title {
         display: flex;
         font-size: 70px;
@@ -195,8 +188,5 @@
         padding-left: 2rem;
         padding-top: 2rem;
         font-family: 'Electrolize', Courier, monospace;
-      }
-
-
-  }
-  
+    }
+}
