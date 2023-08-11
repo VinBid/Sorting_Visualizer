@@ -1,60 +1,60 @@
 :root {
     --color: rgb(55, 53, 53);
-  }
-  
-  body {
+}
+
+body {
     background-color: var(--color);
     margin: 0;
-  }
-  
-  .InformationObject {
+}
+
+.informationObject {
     display: flex;
     align-items: center;
     flex-direction: column;
     background: linear-gradient(to bottom, #333333, #000000);
-  }
-  
-  
-  .FlexContainer1 {
+}
+
+
+.flexContainer1 {
     display: flex;
     flex-direction: column;
     padding: 2rem;
     flex-wrap: wrap;
     flex-shrink: 1;
     justify-content: space-between;
-  }
-  
-  .Title {
+}
+
+.titleAlgoInfo {
     display: flex;
     font-size: 100px;
     background-color: rgba(40, 40, 40, 0.085);
     padding-left: 2rem;
     padding-top: 2rem;
     font-family: 'Electrolize', Courier, monospace;
-  }
-  
-  .SortingAlgoInfo {
+}
+
+.sortingAlgoInfo {
     max-width: 900px;
     text-align: center;
-    font-size: 20px;
+    font-size: 22px;
     line-height: 1.6;
     margin: 2rem;
     padding: 1rem;
     background-color: var(--color);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 }
-  
-  .MergeQuickCards {
+
+.mergeQuickCards {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     max-width: 800px;
     margin: 2rem auto;
     background-color: black;
-    
-  }
-  
-  .Card {
+
+}
+
+.card {
     flex: 0 1 calc(50% - 1rem);
     padding: 1.5rem;
     background-color: white;
@@ -62,78 +62,118 @@
     border-radius: 5px;
     transition: transform 0.2s ease-in-out;
     background-color: var(--color);
-    margin-bottom: 2.5rem; /* Add spacing between cards */
-    border-radius: 20px; /* Add rounded corners */
+    margin-bottom: 2.5rem;
+    border-radius: 20px;
+}
 
-  }
-  
-  .Card:hover {
+.card:hover {
     transform: scale(1.02);
     background-color: var(--color);
-    border-radius: 20px; /* Add rounded corners */
+    border-radius: 20px;
+}
 
-
-  }
-  
-  .CardTitle {
+.cardTitle {
     font-size: 35px;
     font-weight: bold;
     margin-bottom: 0.5rem;
     background-color: var(--color);
+    text-decoration: underline;
+}
 
-
-  }
-  
-  .CardDescription {
+.cardDescription {
     font-size: 16px;
     line-height: 1.5;
     padding: 1.25rem;
     background-color: var(--color);
-  }
-  
-  .AlgoRuntimes {
+}
+
+.algoRuntimes {
     margin-top: 1rem;
     font-size: 14px;
     color: #555;
-  }
-  
-  
-  .LogCards {
+}
+
+
+.logCards {
     font-size: 50px;
     font-weight: 700;
-    
-  }
-  
-  .QuadraticCards {
+
+}
+
+.quadraticCards {
     font-size: 50px;
     font-weight: 700;
-  }
-  
-  .InsertionBubbleCards {
+}
+
+.insertionBubbleCards {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     max-width: 800px;
     margin: 2rem auto;
     background-color: black;
-    border-radius: 10px; /* Add rounded corners */
+    border-radius: 10px;
 
-  }
-  
-  .Runtimes {
+}
+
+.runtimes {
     max-width: 900px;
     padding: 2rem;
-    font-size: 20px;
+    font-size: 22px;
     line-height: 1.6;
     margin: 2rem;
     padding: 1rem;
     background-color: var(--color);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 
-  }
+}
 
-  .AlgoRuntime {
-    background-color: var(--color);
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    width: 100%;
+}
 
-  }
-  
+.tableHeader {
+    font-size: 22px;
+    text-decoration: underline;
+}
+
+.tableLabel,
+.tableValue {
+    padding: 8px 12px;
+}
+
+tr {
+    border-bottom: 1px solid '#ccc';
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    color: white;
+}
+
+td {
+    padding: 8px;
+}
+
+th {
+    padding: 12px;
+    text-align: left;
+    background-color: green;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 600px) {
+    .titleAlgoInfo {
+        display: flex;
+        font-size: 70px;
+        background-color: rgba(40, 40, 40, 0.085);
+        padding-left: 2rem;
+        padding-top: 2rem;
+        font-family: 'Electrolize', Courier, monospace;
+    }
+}

@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './SortingVisualizing.css';
-import { getMergeSortAnimations, getInsertionSortAnimations, getQuickSortAnimations, getBubbleSortAnimations} from './SortingAlgo';
+import { getMergeSortAnimations, getInsertionSortAnimations, getQuickSortAnimations, getBubbleSortAnimations } from './SortingAlgo';
 import Slider from 'react-input-slider';
 
-const ACCENTCOLOR = 'green'
-
-
+const ACCENTCOLOR = 'green';
 
 export default class SortingVisualizing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       array: [],
-      animationSpeed: 6,
-      numElements: 500,
-      animations: [], // Keep a reference to the setTimeout functions
-      isRunning: false,
+      animationSpeed: 6, //initial animation speed state
+      numElements: 500, //initial num elements state
+      animations: [], 
+      isRunning: false, //isRunning indicator state
+      isAdjusting: false, //isAdjusting indicator state
     };
   }
 
@@ -39,17 +38,20 @@ export default class SortingVisualizing extends React.Component {
     for (let i = 0; i < number_vals; i++) {
       array.push(this.pushRandIntInterval(5, 550));
     }
-    this.setState({ array, animations: [], isRunning: false }, () => {
-      // Set the background color of all bars to green after generating the new array
-      const arrayBars = document.getElementsByClassName('barArray');
-      for (let i = 0; i < arrayBars.length; i++) {
-        arrayBars[i].style.background = ACCENTCOLOR;
+  
+    const arrayBars = document.getElementsByClassName('barArray'); //adds transitions while moving slider
+    for (let i = 0; i < arrayBars.length; i++) {
+      arrayBars[i].style.background = ACCENTCOLOR; //initializes array bars
+      if (!this.state.isRunning) {
+        arrayBars[i].classList.add('animate-transition');
+      } else {
+        arrayBars[i].classList.remove('animate-transition');
       }
-    });
+    }
+  
+    this.setState({ array, animations: [], isRunning: false, isAdjusting: false });
   }
   
-  
-
   pushRandIntInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
@@ -57,6 +59,10 @@ export default class SortingVisualizing extends React.Component {
   mergeSort() {
     if (this.state.isRunning) {
       return;
+    }
+    const arrayBars = document.getElementsByClassName('barArray');
+    for (let i = 0; i < arrayBars.length; i++) {
+        arrayBars[i].classList.remove('animate-transition');
     }
   
     this.setState({ isRunning: true }, () => {
@@ -75,13 +81,13 @@ export default class SortingVisualizing extends React.Component {
   
         if (i % 3 !== 2) {
           const styleBarOne = arrayBars[barOneID].style;
-          const styleBarTwo = arrayBars[newHeight].style;
+          const styleBarTwo = arrayBars[newHeight].style; 
           const whichColor = i % 3 === 0 ? 'red' : ACCENTCOLOR;
   
           const timeout1 = setTimeout(() => {
             styleBarOne.background = whichColor;
             styleBarTwo.background = whichColor;
-          }, i * animationSpeed);
+          }, i * animationSpeed); //timeouts like this limit speed of animation
   
           this.state.animations.push(timeout1);
         } else {
@@ -90,7 +96,6 @@ export default class SortingVisualizing extends React.Component {
               const barOneStyle = barsArray[barOneID].style;
               barOneStyle.height = `${newHeight}px`;
   
-              // If this is the last animation, mark the sorting as finished
               if (i === animations.length - 1) {
                 this.setState({ isRunning: false });
               }
@@ -107,7 +112,13 @@ export default class SortingVisualizing extends React.Component {
     if (this.state.isRunning || this.state.isGeneratingArray) {
       return;
     }
-    this.setState({ isRunning: true }, () => {
+
+    const arrayBars = document.getElementsByClassName('barArray');
+    for (let i = 0; i < arrayBars.length; i++) {
+        arrayBars[i].classList.remove('animate-transition');
+    }
+
+    this.setState({ isRunning: true, isAdjusting: false }, () => {
       const { animationSpeed, array } = this.state;
       const animations = getQuickSortAnimations(array);
       const arrayBars = document.getElementsByClassName('barArray');
@@ -116,11 +127,11 @@ export default class SortingVisualizing extends React.Component {
 
       for (let i = 0; i < animations.length; i++) {
         const [curr, before, currValue, beforeValue] = animations[i];
-        if (!continueSorting) {
+        if (!continueSorting) { //state var that sees if sorting still occuring
           break;
         }
 
-        if (currValue === -1) {
+        if (currValue === -1) { //these values help determine the type of animation as explained in SortingAlgo.js
           if (beforeValue === -1) {
             const timeout1 = setTimeout(() => {
               barsArray[curr].style.backgroundColor = 'red';
@@ -163,10 +174,16 @@ export default class SortingVisualizing extends React.Component {
   }
 
   bubbleSort() {
-    if (this.state.isRunning) {
+    if (this.state.isRunning) { // same logic as earlier
       return;
     }
-    this.setState({ isRunning: true }, () => {
+
+    const arrayBars = document.getElementsByClassName('barArray');
+    for (let i = 0; i < arrayBars.length; i++) { //this for loop removes adjusting element animation before actual sort animation begins
+        arrayBars[i].classList.remove('animate-transition');
+    }
+
+    this.setState({ isRunning: true, isAdjusting: false }, () => {
       const { animationSpeed, array } = this.state;
       const animations = getBubbleSortAnimations(array);
       const arrayBars = document.getElementsByClassName('barArray');
@@ -204,7 +221,7 @@ export default class SortingVisualizing extends React.Component {
 
         }
       }
-      const timeout4 = setTimeout(() => {
+      const timeout4 = setTimeout(() => { 
         this.setState({ isRunning: false });
       }, animations.length * animationSpeed);
       this.state.animations.push(timeout4);
@@ -217,7 +234,14 @@ export default class SortingVisualizing extends React.Component {
     if (this.state.isRunning) {
       return;
     }
-    this.setState({ isRunning: true }, () => {
+
+    const arrayBars = document.getElementsByClassName('barArray');
+    for (let i = 0; i < arrayBars.length; i++) {
+        arrayBars[i].classList.remove('animate-transition');
+    }
+
+
+    this.setState({ isRunning: true, isAdjusting: false }, () => {
       const { animationSpeed, array } = this.state;
       const animations = getInsertionSortAnimations(array);
       const arrayBars = document.getElementsByClassName('barArray');
@@ -273,7 +297,6 @@ export default class SortingVisualizing extends React.Component {
 
   handleNumElementsChange = (value) => {
     const { isRunning } = this.state;
-  
     if (!isRunning) {
       this.setState({ numElements: value, isAdjusting: true });
     }
@@ -295,10 +318,9 @@ export default class SortingVisualizing extends React.Component {
             <div className="barArray" key={idx} style={{ height: `${value}px` }} />
           ))}
         </div>
-
+  
         <div className='footerObject'>
-            <div className='sliders'>
-
+          <div className='sliders'>
             <Slider
               axis="x"
               x={animationSpeed}
@@ -313,12 +335,12 @@ export default class SortingVisualizing extends React.Component {
                   backgroundColor: ACCENTCOLOR, // Set your desired color here
                 },
                 thumb: {
-                  backgroundColor: 'white', // Set your desired color here
+                  backgroundColor: 'white', 
                 },
               }}
             />
             <span> Speed: {animationSpeed} ms </span>
-
+  
             <Slider
               axis="x"
               x={numElements}
@@ -327,35 +349,33 @@ export default class SortingVisualizing extends React.Component {
               onChange={({ x }) => this.handleNumElementsChange(x)}
               styles={{
                 track: {
-                  backgroundColor: 'white', // Set your desired color here
+                  backgroundColor: 'white', 
                 },
                 active: {
-                  backgroundColor: ACCENTCOLOR, // Set your desired color here
+                  backgroundColor: ACCENTCOLOR, 
                 },
                 thumb: {
-                  backgroundColor: 'white', // Set your desired color here
+                  backgroundColor: 'white', 
                 },
               }}
             />
             <span>Elements: {numElements} </span>
           </div>
-
-        </div>
-
-        <div className='buttons'>
-            <button className="sorting-button" onClick={() => {
+  
+          <div className='buttons'>
+            <button className="sortingButton" onClick={() => {
               this.setState({ sorting: false });
               this.resetArray(numElements);
-              }}>
-                Generate Array
-            </button>            
-            <button className="sorting-button" onClick={() => this.mergeSort()}>Merge Sort</button>
-            <button className="sorting-button" onClick={() => this.quickSort()}>Quick Sort</button>
-            <button className="sorting-button" onClick={() => this.bubbleSort()}>Bubble Sort</button>
-            <button className="sorting-button" onClick={() => this.insertionSort()}>Insertion Sort</button>
+            }}>
+              Generate Array
+            </button>
+            <button className="sortingButton" onClick={() => this.mergeSort()}>Merge Sort</button>
+            <button className="sortingButton" onClick={() => this.quickSort()}>Quick Sort</button>
+            <button className="sortingButton" onClick={() => this.bubbleSort()}>Bubble Sort</button>
+            <button className="sortingButton" onClick={() => this.insertionSort()}>Insertion Sort</button>
           </div>
-        {/* redesign button haha */}
+        </div>
       </div>
     );
   }
-}
+}  

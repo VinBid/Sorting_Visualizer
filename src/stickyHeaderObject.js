@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import './StickyHeader.css';
 
-const StickyHeader = () => {
+const StickyHeader = () => { //code for sticky header. Includes automatic scrolling
   const sortingAlgorithms = [
     { label: 'Visualizer', sectionId: 'visualizer', customOffset: -100 },
     { label: 'Information', sectionId: 'information' },
@@ -38,8 +38,8 @@ const StickyHeader = () => {
   }, []);
 
   return (
-    <div className="header"> 
-      <div className="title">Sorting Visualizer</div> 
+    <div className="header">
+      <div className="title">Sorting Visualizer</div>
       {sortingAlgorithms.map((algorithm, index) => (
         <Link
           key={index}

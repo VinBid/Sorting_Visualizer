@@ -1,8 +1,6 @@
 * {
-    background-color: black;
-    color: white;
-
-    /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%239C92AC' fill-opacity='0.25' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"), linear-gradient(to right top, #343a40, #2b2c31, #211f22, #151314, #000000); */
+  background-color: black;
+  color: white;
 
 }
 
@@ -11,120 +9,123 @@ body {
   color: white;
 }
 
-/* SortingVisualizing.css */
-
 :root {
-    --slider-track-color: #3f51b5;
-    --slider-thumb-color: #f44336;
-    --slider-thumb-hover-color: #e91e63;
-    --slider-track-color-second: #237925;
-    --slider-thumb-color-second: #ff9800;
-    --slider-thumb-hover-color-second: #ffc107;
-    --accentColor: green
-
-    ;
-  }
-  
-
-.arrayContainer {
-    display: flex; 
-    align-items: flex-end;
-    justify-content: center; /* Center items horizontally */
-    height : 540px;
-    padding-top: 1.2rem; 
-    padding-right: 3rem; 
-    padding-bottom: 1rem; 
-    padding-left: 3rem; 
+  --slider-track-color: #3f51b5;
+  --slider-thumb-color: #f44336;
+  --slider-thumb-hover-color: #e91e63;
+  --slider-track-color-second: #237925;
+  --slider-thumb-color-second: #ff9800;
+  --slider-thumb-hover-color-second: #ffc107;
+  --accentColor: green;
 }
 
+
+.arrayContainer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  /* Adjust to start content from the left edge */
+  height: 540px;
+  padding: 1.2rem 2rem 1rem 3rem;
+  overflow-x: auto;
+  position: relative;
+  /* Add this to establish a positioning context */
+}
+
+/* Add a pseudo-element to create an invisible space at the end */
+.arrayContainer::after {
+  content: "";
+  width: 1rem;
+  /* Match the right padding to create the desired margin */
+  flex-shrink: 0;
+}
+
+/* Adjust the bars to account for the invisible space */
 .barArray {
-    flex-grow: 1; /* Let the bar elements grow to fill the available space */
-    flex-basis: 0; /* Reset the initial size to zero */
-    background-color: var(--accentColor);
-    margin: 0 1px;
-} 
+  display: inline-block;
+  min-width: 0.1px;
+  flex-grow: 1;
+  flex-basis: 0;
+  background-color: var(--accentColor);
+  width: 12px;
+  margin: 0 1px;
+}
+
+
+.barArray.animate-transition {
+  transition: height 0.3s ease-in-out;
+}
 
 .footerObject {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .buttons {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Add this line to center the flex item horizontally */
-    padding-left: 13rem;
-    padding-right: 15rem;
-    padding-bottom: 2.5rem;
-    
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 13rem;
+  padding-right: 15rem;
+  padding-bottom: 2.5rem;
+  gap: 5rem;
+  flex-shrink: 1;
+
+}
 
 
-  .sliders {
-    display: flex;
-    flex-wrap: wrap;
-    flex-shrink: 1;
-    align-items: center; /* Center the sliders horizontally within .sliders */
-    justify-content: space-between;
-    margin-top: 1rem; 
-    padding-bottom: 1rem;
+.sliders {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 1;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
 
-    
-  }
-  
-  .sliderContainer {
-    /* Optional: Add some additional spacing between each slider */
-    margin-bottom: 1rem;
-  }
-  
-  .slider-x {
-    /* Customize the color of the slider thumb (handle) */
-    background-color: #ff0000; /* Replace #ff0000 with your desired color */
-  }
-  
-  .slider-x::after {
-    /* Customize the color of the slider track (line) */
-    background-color: #00ff00; /* Replace #00ff00 with your desired color */
-  }
+}
 
-  .sliders span {
-    margin-top: 0.5rem; /* Add some spacing between the slider and the label */
-    font-size: 15px; /* Adjust the font size as needed */
-    font-weight: bold; /* Optionally, make the labels bold */
-    padding-left: 1rem;
-    padding-right: 2rem;
-    padding-bottom: 0.5rem;
-  }
-/* SortingVisualizing.css */
+.sliderContainer {
+  margin-bottom: 1rem;
 
-/* Styles for the animation speed slider */
-/* .sorting-button {
-    background-color: var(--accentColor);
-    color: white;
-    font-size: 15px;
-    padding: 3px 15px, 1px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  } */
+}
 
-/* CSS */
-.sorting-button {
-    font-weight: bold;
+.sliderX {
+  background-color: #ff0000;
+
+}
+
+.sliderX::after {
+  background-color: #00ff00;
+
+}
+
+.sliders span {
+  margin-top: 0.5rem;
+  font-size: 15px;
+  font-weight: bold;
+  padding-left: 1rem;
+  padding-right: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.sortingButton {
+  flex-shrink: 1;
+  font-weight: bold;
   align-items: center;
   appearance: none;
   background-color: var(--accentColor);
   border-radius: 24px;
   border-style: none;
-  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
   box-sizing: border-box;
   color: white;
   cursor: pointer;
   display: inline-flex;
   fill: currentcolor;
-  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   height: 30px;
@@ -137,55 +138,186 @@ body {
   position: relative;
   text-align: center;
   text-transform: none;
-  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   width: auto;
-  will-change: transform,opacity;
+  will-change: transform, opacity;
   z-index: 0;
 }
 
-.sorting-button:hover {
-    font-weight: bold;
+.sortingButton:hover {
+  font-weight: bold;
   background: #F6F9FE;
   color: var(--accentColor);
 }
 
-.sorting-button:active {
+.sortingButton:active {
   box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
   outline: none;
 }
 
-.sorting-button:focus {
+.sortingButton:focus {
   outline: none;
   border: 2px solid white;
 }
 
-.sorting-button:not(:disabled) {
+.sortingButton:not(:disabled) {
   box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }
 
-.sorting-button:not(:disabled):hover {
+.sortingButton:not(:disabled):hover {
   box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
 }
 
-.sorting-button:not(:disabled):focus {
+.sortingButton:not(:disabled):focus {
   box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }
 
-.sorting-button:not(:disabled):active {
+.sortingButton:not(:disabled):active {
   box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
 }
 
-.sorting-button:disabled {
+.sortingButton:disabled {
   box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }
-  
+
 .footerObject {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 
 }
 
-/* enniku SM vannum */
+@media screen and (max-width: 850px) {
+  .buttons {
+    padding-left: 5rem;
+    padding-right: 5rem;
+    gap: 1rem;
+  }
+
+  .sortingButton {
+    flex-shrink: 1;
+    font-weight: bold;
+    align-items: center;
+    appearance: none;
+    background-color: var(--accentColor);
+    border-radius: 24px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    fill: currentcolor;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    height: 30px;
+    justify-content: center;
+    letter-spacing: .25px;
+    line-height: normal;
+    max-width: 100%;
+    overflow: visible;
+    padding: 2px 24px;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: auto;
+    will-change: transform, opacity;
+    z-index: 0;
+  }
+
+  .sliders {
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .sliders {
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    flex-direction: column;
+
+
+  }
+
+}
+
+/* For screens below 500px */
+@media screen and (max-width: 500px) {
+  .buttons {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    gap: 1rem;
+  }
+
+  .sortingButton {
+    flex-shrink: 1;
+    font-weight: bold;
+    align-items: center;
+    appearance: none;
+    background-color: var(--accentColor);
+    border-radius: 24px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    fill: currentcolor;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    height: 30px;
+    justify-content: center;
+    letter-spacing: .25px;
+    line-height: normal;
+    max-width: 100%;
+    overflow: visible;
+    padding: 2px 24px;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: auto;
+    will-change: transform, opacity;
+    z-index: 0;
+  }
+
+  .sliders {
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
