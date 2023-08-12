@@ -60,3 +60,25 @@
   background: #F6F9FE;
   color: var(--accentColor);
 }
+
+@media screen and (max-width: 780px) {
+  .title {
+    font-size: 20px; /* Adjust font size for mobile */
+    padding-right: 0.5rem; /* Adjust padding for mobile */
+  }
+  
+}
+
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 2px; /* Adjust font size for mobile */
+    padding-right: 1rem; /* Adjust padding for mobile */
+
+  }
+
+ .button {
+    font-size: 2px; /* Adjust font size for mobile */
+  } 
+
+  
+}

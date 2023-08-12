@@ -170,7 +170,7 @@ th {
 @media screen and (max-width: 600px) {
     .titleAlgoInfo {
         display: flex;
-        font-size: 70px;
+        font-size: 50px;
         background-color: rgba(40, 40, 40, 0.085);
         padding-left: 2rem;
         padding-top: 2rem;
