@@ -266,11 +266,11 @@ body {
 }
 
 /* For screens below 500px */
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .buttons {
     padding-left: 2rem;
     padding-right: 2rem;
-    gap: 1rem;
+    gap: 0rem;
   }
 
   .sortingButton {
@@ -296,7 +296,7 @@ body {
     line-height: normal;
     max-width: 100%;
     overflow: visible;
-    padding: 2px 24px;
+    padding: 0px 15px;
     position: relative;
     text-align: center;
     text-transform: none;
