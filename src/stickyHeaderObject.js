@@ -10,12 +10,15 @@ const StickyHeader = () => { //code for sticky header. Includes automatic scroll
   ];
 
   const [activeButtonIndex, setActiveButtonIndex] = useState(0);
+  const [pageTitle, setPageTitle] = useState('Sorting Visualizer'); // Initial title
+
 
   useEffect(() => {
     const handleScroll = () => {
       const sectionOffsets = sortingAlgorithms.map(algorithm => {
         const section = document.getElementById(algorithm.sectionId);
         return section.offsetTop + (algorithm.customOffset !== undefined ? algorithm.customOffset : -70);
+
       });
 
       const currentPosition = window.scrollY + window.innerHeight / 16;
@@ -28,18 +31,35 @@ const StickyHeader = () => { //code for sticky header. Includes automatic scroll
       }
 
       setActiveButtonIndex(newActiveButtonIndex);
+
+    };
+
+    const handleResize = () => {
+      if (window.innerWidth <= 600) {
+        setPageTitle('S.V.'); // Smaller screen title change
+      } else {
+        setPageTitle('Sorting Visualizer'); // Larger screen title change
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+
+      
     };
   }, []);
 
   return (
     <div className="header">
-      <div className="title">Sorting Visualizer</div>
+      <div className="title">{pageTitle}</div>
       {sortingAlgorithms.map((algorithm, index) => (
         <Link
           key={index}
