@@ -62,12 +62,12 @@
 
 @media screen and (max-width: 600px) {
   .title {
-    padding-right: 1.5rem; 
+    padding-right: 0.75rem; 
 
   }
 
  .button {
-    font-size: 12px; 
+    font-size: 14px; 
   }
 
   
